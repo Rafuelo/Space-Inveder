@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public LogicScript logic;
     public float moveSpeed = 5f; // Adjust the speed as needed
     public float boundaryX = 5f; // Adjust the boundary to limit movem
 
@@ -19,5 +20,10 @@ public class PlayerScript : MonoBehaviour
         Vector3 currentPosition = transform.position;
         currentPosition.x = Mathf.Clamp(currentPosition.x, -boundaryX, boundaryX);
         transform.position = currentPosition;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        logic.Removelive();
     }
 }
