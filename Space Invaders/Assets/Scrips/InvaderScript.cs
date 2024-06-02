@@ -18,7 +18,7 @@ public class InvaderScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player Bullet")
         {
             animator.SetBool("Is Dead", true);
             invadersScript.InvaderDied();

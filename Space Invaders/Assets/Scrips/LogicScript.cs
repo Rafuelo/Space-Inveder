@@ -78,6 +78,9 @@ public class LogicScript : MonoBehaviour
         if (isGameOver && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
             RestartGame();
     }
+
+    //---------------------------------------------------------------------------------------------------------------------- 
+
     private void LoadLives()
     {
         lives = PlayerPrefs.GetInt("Lives", 3);
@@ -113,6 +116,7 @@ public class LogicScript : MonoBehaviour
         live.SetActive(true);
     }
 
+    //----------------------------------------------------------------------------------------------------------------------
 
     private void LoadScore()
     {

@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        logic.Removelive();
+        if (collision.gameObject.tag != "Player Bullet")
+            logic.Removelive();
     }
 }

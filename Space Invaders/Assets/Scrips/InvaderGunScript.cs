@@ -6,8 +6,8 @@ public class InvaderGunScript : MonoBehaviour
 {
 
     public GameObject bullet;
-    public float lowestTime;
-    public float highestTime;
+    public float lowestTime = 2;
+    public float highestTime = 10;
     private float timeToShoot;
     private float timer = 0;
 
