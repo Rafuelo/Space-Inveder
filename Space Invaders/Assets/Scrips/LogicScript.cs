@@ -10,7 +10,7 @@ public class LogicScript : MonoBehaviour
     private int playerScore;
 
     public GameObject live1, live2, live3, live4, live5, live6, live7, live8, gameOverScreen;
-    public GameObject[] gameObjectsLives;
+    public GameObject[] objectsLives;
 
     private int lives;
 
@@ -19,7 +19,7 @@ public class LogicScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObjectsLives = new GameObject[] { live1, live2, live3, live4, live5, live6, live7, live8 };
+        objectsLives = new GameObject[] { live1, live2, live3, live4, live5, live6, live7, live8 };
         LoadScore();
         LoadLives();
     }
@@ -28,55 +28,16 @@ public class LogicScript : MonoBehaviour
     void Update()
     {
         if (lives >= 8)
-            SetLiveActive(live8, true);
-
-        if (lives == 7)
-        {
-            SetLiveActive(live8, false);
-            SetLiveActive(live7, true);
-        }
-
-        if (lives == 6)
-        {
-            SetLiveActive(live7, false);
-            SetLiveActive(live6, true);
-        }
-
-        if (lives == 5)
-        {
-            SetLiveActive(live6, false);
-            SetLiveActive(live5, true);
-        }
-
-        if (lives == 4)
-        {
-            SetLiveActive(live5, false);
-            SetLiveActive(live4, true);
-        }
-
-        if (lives == 3)
-        {
-            SetLiveActive(live4, false);
-            SetLiveActive(live3, true);
-        }
-
-        if (lives == 2)
-        {
-            SetLiveActive(live3, false);
-            SetLiveActive(live2, true);
-        }
-
-        if (lives == 1)
-        {
-            SetLiveActive(live2, false);
-            SetLiveActive(live1, true);
-        }
+            SetAllLivesActive(true);
 
         if (lives == 0)
         {
-            SetLiveActive(live1, false);
+            SetAllLivesActive(false);
             GameOver();
         }
+
+        SetLiveActiveFromEnd(lives);
+        SetLiveActiveFromStart(lives);
 
         if (isGameOver && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
             RestartGame();
@@ -109,14 +70,21 @@ public class LogicScript : MonoBehaviour
         SaveLives(lives);
     }
 
-    private void SetLiveActive(GameObject live, bool isActive)
+    private void SetLiveActiveFromStart(int lives)
     {
-        live.SetActive(isActive);
+        for (int i = 0; i < lives; i++)
+            objectsLives[i].SetActive(true);
+    }
+
+    private void SetLiveActiveFromEnd(int lives)
+    {
+        for (int i = 7; i > lives - 1; i--)
+            objectsLives[i].SetActive(false);
     }
 
     public void SetAllLivesActive(bool isActive)
     {
-        foreach (GameObject life in gameObjectsLives)
+        foreach (GameObject life in objectsLives)
         {
             life.SetActive(isActive);
         }
