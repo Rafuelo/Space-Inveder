@@ -10,6 +10,8 @@ public class LogicScript : MonoBehaviour
     private int playerScore;
 
     public GameObject live1, live2, live3, live4, live5, live6, live7, live8, gameOverScreen;
+    public GameObject[] gameObjectsLives;
+
     private int lives;
 
     public bool isGameOver = false;
@@ -17,6 +19,7 @@ public class LogicScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObjectsLives = new GameObject[] { live1, live2, live3, live4, live5, live6, live7, live8 };
         LoadScore();
         LoadLives();
     }
@@ -25,53 +28,53 @@ public class LogicScript : MonoBehaviour
     void Update()
     {
         if (lives >= 8)
-            ShowLive(live8);
+            SetLiveActive(live8, true);
 
-        if (lives <= 7)
+        if (lives == 7)
         {
-            HideLive(live8);
-            ShowLive(live7);
+            SetLiveActive(live8, false);
+            SetLiveActive(live7, true);
         }
 
-        if (lives <= 6)
+        if (lives == 6)
         {
-            HideLive(live7);
-            ShowLive(live6);
+            SetLiveActive(live7, false);
+            SetLiveActive(live6, true);
         }
 
-        if (lives <= 5)
+        if (lives == 5)
         {
-            HideLive(live6);
-            ShowLive(live5);
+            SetLiveActive(live6, false);
+            SetLiveActive(live5, true);
         }
 
-        if (lives <= 4)
+        if (lives == 4)
         {
-            HideLive(live5);
-            ShowLive(live4);
+            SetLiveActive(live5, false);
+            SetLiveActive(live4, true);
         }
 
-        if (lives <= 3)
+        if (lives == 3)
         {
-            HideLive(live4);
-            ShowLive(live3);
+            SetLiveActive(live4, false);
+            SetLiveActive(live3, true);
         }
 
-        if (lives <= 2)
+        if (lives == 2)
         {
-            HideLive(live3);
-            ShowLive(live2);
+            SetLiveActive(live3, false);
+            SetLiveActive(live2, true);
         }
 
-        if (lives <= 1)
+        if (lives == 1)
         {
-            HideLive(live2);
-            ShowLive(live1);
+            SetLiveActive(live2, false);
+            SetLiveActive(live1, true);
         }
 
         if (lives == 0)
         {
-            HideLive(live1);
+            SetLiveActive(live1, false);
             GameOver();
         }
 
@@ -106,14 +109,17 @@ public class LogicScript : MonoBehaviour
         SaveLives(lives);
     }
 
-    private void HideLive(GameObject live)
+    private void SetLiveActive(GameObject live, bool isActive)
     {
-        live.SetActive(false);
+        live.SetActive(isActive);
     }
 
-    private void ShowLive(GameObject live)
+    public void SetAllLivesActive(bool isActive)
     {
-        live.SetActive(true);
+        foreach (GameObject life in gameObjectsLives)
+        {
+            life.SetActive(isActive);
+        }
     }
 
     //----------------------------------------------------------------------------------------------------------------------

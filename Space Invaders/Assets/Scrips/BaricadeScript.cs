@@ -14,14 +14,14 @@ public class BaricadeScript : MonoBehaviour
 
     void Update()
     {
-        if (durability == 6)
+        if (durability == (durability / 3) * 2)
         {
             collider2d.offset = new Vector2(collider2d.offset.x, -0.25f);
             collider2d.size = new Vector2(collider2d.size.x, 0.5f);
             spriteRenderer.sprite = half;
         }
 
-        if (durability == 3)
+        if (durability == durability / 3)
         {
             collider2d.offset = new Vector2(offsetX, -0.37f);
             collider2d.size = new Vector2(0.5f, 0.26f);

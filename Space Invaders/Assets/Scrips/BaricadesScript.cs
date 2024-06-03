@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BaricadesScript : MonoBehaviour
 {
+    private GameObject[] baricades;
+
+
     // Start is called before the first frame update
     void Start()
     {
