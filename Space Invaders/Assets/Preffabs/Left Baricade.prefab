@@ -146,6 +146,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3341949532270509259}
   half: {fileID: 1361202216, guid: 831863058c76d54409cc235758c103ea, type: 3}
   low: {fileID: 509702668, guid: 831863058c76d54409cc235758c103ea, type: 3}
-  collider: {fileID: 3708845065686171482}
+  collider2d: {fileID: 3708845065686171482}
   offsetX: 0.062
-  durability: 9
+  durability: 15

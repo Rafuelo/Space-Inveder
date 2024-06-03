@@ -30,14 +30,17 @@ public class LogicScript : MonoBehaviour
         if (lives >= 8)
             SetAllLivesActive(true);
 
-        if (lives == 0)
+        else if (lives > 0)
+        {
+            SetLiveActiveFromEnd(lives);
+            SetLiveActiveFromStart(lives);
+        }
+
+        else
         {
             SetAllLivesActive(false);
             GameOver();
         }
-
-        SetLiveActiveFromEnd(lives);
-        SetLiveActiveFromStart(lives);
 
         if (isGameOver && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter))
             RestartGame();

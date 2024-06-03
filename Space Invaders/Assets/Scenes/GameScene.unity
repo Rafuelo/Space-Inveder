@@ -4742,7 +4742,7 @@ MonoBehaviour:
   live7: {fileID: 1884733602}
   live8: {fileID: 2119123271}
   gameOverScreen: {fileID: 1845718335}
-  gameObjectsLives: []
+  objectsLives: []
   isGameOver: 0
 --- !u!4 &792732102
 Transform:
@@ -5908,14 +5908,6 @@ PrefabInstance:
     - target: {fileID: 2054990312848057460, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: m_Name
       value: 'Right Baricade '
-      objectReference: {fileID: 0}
-    - target: {fileID: 6371464302154702513, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
-      propertyPath: collider2d
-      value: 
-      objectReference: {fileID: 1270973893}
-    - target: {fileID: 6371464302154702513, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
-      propertyPath: durability
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7085158773526118965, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8200,11 +8192,6 @@ MonoBehaviour:
 --- !u!4 &1270973891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7085158773526118965, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
-  m_PrefabInstance: {fileID: 965299239}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1270973893 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 5909640267032932195, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
   m_PrefabInstance: {fileID: 965299239}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1279668257
@@ -10750,22 +10737,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2130008046}
     m_Modifications:
-    - target: {fileID: 1971628602626475329, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
-      propertyPath: sizeY
-      value: 0.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971628602626475329, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
-      propertyPath: offsetY
-      value: -0.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971628602626475329, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
-      propertyPath: collider2d
-      value: 
-      objectReference: {fileID: 1890143979}
-    - target: {fileID: 1971628602626475329, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
-      propertyPath: durability
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 2185502958885466726, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -11671,11 +11642,6 @@ SpriteRenderer:
 --- !u!4 &1890143977 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2185502958885466726, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
-  m_PrefabInstance: {fileID: 1659084107}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1890143979 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 3708845065686171482, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
   m_PrefabInstance: {fileID: 1659084107}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1902611528
