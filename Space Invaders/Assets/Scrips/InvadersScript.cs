@@ -23,13 +23,12 @@ public class InvadersScript : MonoBehaviour
 
     private bool movedDown = false;
     private bool isMoved = false;
-    public bool isMoving = true;
 
     void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer >= moveInterval && isMoving)
+        if (timer >= moveInterval && logic.GetIsAllMoving())
         {
             timer = 0;
 
@@ -101,7 +100,6 @@ public class InvadersScript : MonoBehaviour
     {
         return isMoved;
     }
-
     public void InvaderDied()
     {
         sumOfInvaders--;

@@ -11,10 +11,10 @@ public class LogicScript : MonoBehaviour
 
     public GameObject live1, live2, live3, live4, live5, live6, live7, live8, gameOverScreen;
     public GameObject[] objectsLives;
-
     private int lives;
 
     public bool isGameOver = false;
+    private bool isMoving = true;
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +114,18 @@ public class LogicScript : MonoBehaviour
         SaveScore(playerScore);
     }
 
+    //----------------------------------------------------------------------------------------------------------------------
+
+    public void SetIsAllMoving(bool isMoving)
+    {
+        this.isMoving = isMoving;
+    }
+
+    public bool GetIsAllMoving()
+    {
+        return isMoving;
+    }
+
     [ContextMenu("Restart Game")]
     public void RestartGame()
     {
@@ -135,8 +147,5 @@ public class LogicScript : MonoBehaviour
 
         gameOverScreen.SetActive(true);
         isGameOver = true;  
-        //SaveScore(0);
-        //SaveLives(3);
-        //StartAgain();
     }
 }

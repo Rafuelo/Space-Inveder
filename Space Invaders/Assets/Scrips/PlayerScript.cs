@@ -8,23 +8,40 @@ public class PlayerScript : MonoBehaviour
     public float moveSpeed = 5f; // Adjust the speed as needed
     public float boundaryX = 5f; // Adjust the boundary to limit movem
 
+    private float timer = 0;
+
     void Update()
     {
-        // Calculate movement direction based on input
-        float moveDirection = Input.GetAxis("Horizontal");
+        if (logic.GetIsAllMoving())
+        {
+            // Calculate movement direction based on input
+            float moveDirection = Input.GetAxis("Horizontal");
 
-        // Move the object horizontally
-        transform.Translate(Vector3.right * moveDirection * moveSpeed * Time.deltaTime);
+            // Move the object horizontally
+            transform.Translate(Vector3.right * moveDirection * moveSpeed * Time.deltaTime);
 
-        // Clamp the position to stay within boundaries
-        Vector3 currentPosition = transform.position;
-        currentPosition.x = Mathf.Clamp(currentPosition.x, -boundaryX, boundaryX);
-        transform.position = currentPosition;
+            // Clamp the position to stay within boundaries
+            Vector3 currentPosition = transform.position;
+            currentPosition.x = Mathf.Clamp(currentPosition.x, -boundaryX, boundaryX);
+            transform.position = currentPosition;
+        }
+
+        else
+            timer += Time.deltaTime;
+
+        if (timer >= 2.5)
+        {
+            logic.SetIsAllMoving(true);
+            timer = 0;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag != "Player Bullet")
+        {
             logic.Removelive();
+            logic.SetIsAllMoving(false);
+        }
     }
 }
