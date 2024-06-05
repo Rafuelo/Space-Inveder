@@ -16,18 +16,14 @@ public class BulletScript : MonoBehaviour
 
         else
             MoveBullet(Vector3.down);
-
-        if (isPlayer && transform.position.y >= deadZone)
-            Destroy(gameObject);
-
-        if(!isPlayer && transform.position.y <= -deadZone)
-            Destroy(gameObject);
-
     }
 
     private void MoveBullet(Vector3 direction)
     {
         transform.position += direction * Time.deltaTime * bulletSpeed;
+
+        if (Mathf.Abs(transform.position.x) >= deadZone)
+            Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D col)
