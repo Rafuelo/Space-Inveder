@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public LogicScript logic;
+    public AudioSource source;
     public float moveSpeed = 5f; // Adjust the speed as needed
     public float boundaryX = 5f; // Adjust the boundary to limit movem
 
@@ -42,6 +43,7 @@ public class PlayerScript : MonoBehaviour
         {
             logic.Removelive();
             logic.SetIsAllMoving(false);
+            source.Play();
         }
     }
 }

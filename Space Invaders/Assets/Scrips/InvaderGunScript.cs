@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InvaderGunScript : MonoBehaviour
 {
-
+    public LogicScript logic;
     public GameObject bullet;
     public float lowestTime = 2;
     public float highestTime = 10;
@@ -14,12 +14,13 @@ public class InvaderGunScript : MonoBehaviour
     private void Start()
     {
         timeToShoot = Random.Range(lowestTime, highestTime);
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= timeToShoot)
+        if (timer >= timeToShoot && logic.GetIsAllMoving())
         {
             Instantiate(bullet, transform.position, transform.rotation);
             timer = 0;
