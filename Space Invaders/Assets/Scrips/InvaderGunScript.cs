@@ -13,7 +13,7 @@ public class InvaderGunScript : MonoBehaviour
 
     private void Start()
     {
-        timeToShoot = Random.Range(lowestTime, highestTime);
+        RadomaisNumber();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
@@ -23,7 +23,13 @@ public class InvaderGunScript : MonoBehaviour
         if (timer >= timeToShoot && logic.GetIsAllMoving())
         {
             Instantiate(bullet, transform.position, transform.rotation);
+            RadomaisNumber();
             timer = 0;
         }
+    }
+
+    private void RadomaisNumber()
+    {
+        timeToShoot = Random.Range(lowestTime, highestTime);
     }
 }
