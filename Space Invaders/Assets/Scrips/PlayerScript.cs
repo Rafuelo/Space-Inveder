@@ -33,6 +33,7 @@ public class PlayerScript : MonoBehaviour
         if (timer >= 2.5)
         {
             logic.SetIsAllMoving(true);
+            transform.position = new Vector2(-5.5f, -4.5f);
             timer = 0;
         }
     }
