@@ -7,6 +7,8 @@ TagManager:
   - Invader
   - Baricade
   - Player Bullet
+  - Logic
+  - ' Invader Bullet'
   layers:
   - Default
   - TransparentFX
