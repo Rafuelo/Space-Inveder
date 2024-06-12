@@ -15,33 +15,68 @@ public class InvadersScript : MonoBehaviour
 
     public int sumOfInvaders = 55;
 
-    public float moveSpeed = 5f; // Adjust the speed as needed
-    public float boundaryX = 5f; // Adjust the boundary to limit movem
-    public float moveInterval = 0.7f; // Adjust the interval between moves
+    public float moveInterval = 0.1f; 
+    public float boundaryX = 2f; 
+    public float moveSpeed = 0.7f; 
     private float timer = 0;
-    private Vector2 currentDirection = Vector2.left;
-
+    private Vector2 currentDirection = Vector2.right;
+    private int currentWave; // Current wave number
     private bool movedDown = false;
     private bool isMoved = false;
+
+    private void Start()
+    {
+        currentWave = logic.GetWave();
+
+        // Cap the wave number at 10 for speed and position calculations
+        int effectiveWave = Mathf.Min(logic.GetWave(), 10);
+
+        // Only adjust speed and position every 2 waves
+        if (effectiveWave % 2 == 0)
+        {
+            // Calculate the move speed based on the effective wave
+            moveSpeed -= -0.05f * (effectiveWave / 2);
+
+            // Calculate the Y position based on the effective wave
+            float yPos = transform.position.y - (effectiveWave / 2) * -0.2f;
+
+            // Set the initial position of the invader
+            Vector3 startPosition = new Vector3(transform.position.x, yPos, transform.position.z);
+            transform.position = startPosition;
+
+            Debug.Log("Wave: " + currentWave + " (Effective Wave: " + effectiveWave + ") | Speed: " + moveSpeed + " | Y Position: " + yPos);
+        }
+        else
+        {
+            // If the wave is not changing speed and position, use the last calculated values
+            moveSpeed -= -0.05f * ((effectiveWave - 1) / 2);
+            float yPos = transform.position.y - (effectiveWave / 2) * -0.2f;
+
+            Vector3 startPosition = new Vector3(transform.position.x, yPos, transform.position.z);
+            transform.position = startPosition;
+            Debug.Log("Wave: " + currentWave + " (Effective Wave: " + effectiveWave + ") | Speed: " + moveSpeed + " | Y Position: " + yPos);
+        }
+    }
 
     void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer >= moveInterval && logic.GetIsAllMoving())
+        if (timer >= moveSpeed && logic.GetIsAllMoving())
         {
             timer = 0;
 
             if (Mathf.Abs(transform.position.x) >= 2 && !movedDown)
             {
-                Move(Vector2.down);
+                Move(Vector2.down, moveInterval * 2);
                 currentDirection *= -1;
+                RemoveSpeed();
                 movedDown = true;
             }
 
             else
             {
-                Move(currentDirection);
+                Move(currentDirection, moveInterval);
                 movedDown = false;
             }
 
@@ -54,6 +89,7 @@ public class InvadersScript : MonoBehaviour
         if (sumOfInvaders == 0)
         {
             logic.AddLive();
+            logic.AddWave();
             logic.StartAgain();
         }
 
@@ -61,10 +97,10 @@ public class InvadersScript : MonoBehaviour
             gameObject.SetActive(false);
     }
 
-    void Move(Vector2 moveDirection)
+    void Move(Vector2 moveDirection, float moveInterval)
     {
         // Calculate the new position
-        Vector2 newPosition = (Vector2)transform.position + moveDirection * moveSpeed;
+        Vector2 newPosition = (Vector2)transform.position + moveDirection * moveInterval;
 
         // Move the enemy to the new position
         transform.position = newPosition;
@@ -94,6 +130,17 @@ public class InvadersScript : MonoBehaviour
                 break;
         }
         source.Play();
+    }
+
+    private void RemoveSpeed(int times = 1)
+    {
+        moveSpeed -= 0.05f * times;
+        //Debug.Log("New moveSpeed: " + moveSpeed);
+    }
+
+    private void SetTransformY(float y)
+    {
+        transform.position = new Vector2(transform.position.x, y);
     }
 
     public bool GetIsMoved()

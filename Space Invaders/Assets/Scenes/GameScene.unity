@@ -1820,6 +1820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 279225534}
+  - component: {fileID: 279225535}
   m_Layer: 0
   m_Name: Baricade (2)
   m_TagString: Untagged
@@ -1844,6 +1845,21 @@ Transform:
   - {fileID: 1939409220}
   m_Father: {fileID: 1597266481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &279225535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279225533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212f08d2511945e498ea71df3277f89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HalfBaricadeScripts: []
+  leftBaricade: 0
+  rightBaricade: 0
 --- !u!1 &304906315
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,7 +2533,7 @@ Transform:
   m_GameObject: {fileID: 438007623}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2598,9 +2614,9 @@ MonoBehaviour:
   invaderStepClip3: {fileID: 8300000, guid: 658110dbf8ffce04c8d2b64d56ad4171, type: 3}
   invaderStepClip4: {fileID: 8300000, guid: 521b85c851800b641871a15b9c335710, type: 3}
   sumOfInvaders: 55
-  moveSpeed: 0.1
+  moveInterval: 0.1
   boundaryX: 2
-  moveInterval: 0.7
+  moveSpeed: 0.7
 --- !u!82 &438007626
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5934,6 +5950,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Right Baricade '
       objectReference: {fileID: 0}
+    - target: {fileID: 6371464302154702513, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
+      propertyPath: durability
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 7085158773526118965, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -7071,7 +7091,7 @@ Transform:
   m_GameObject: {fileID: 1119290650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -4.5, z: 9.867806}
+  m_LocalPosition: {x: -5.5, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7912,7 +7932,7 @@ Transform:
   m_GameObject: {fileID: 1166916883}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.057, y: 0.25499988, z: -9.867806}
+  m_LocalPosition: {x: 0.057, y: 0.25499988, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9091,7 +9111,7 @@ PrefabInstance:
       objectReference: {fileID: 1952203956}
     - target: {fileID: 6371464302154702513, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: durability
-      value: 15
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7085158773526118965, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10047,6 +10067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1535689850}
+  - component: {fileID: 1535689851}
   m_Layer: 0
   m_Name: Baricade (3)
   m_TagString: Untagged
@@ -10071,6 +10092,21 @@ Transform:
   - {fileID: 1872389504}
   m_Father: {fileID: 1597266481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535689851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535689849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212f08d2511945e498ea71df3277f89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HalfBaricadeScripts: []
+  leftBaricade: 0
+  rightBaricade: 0
 --- !u!1 &1560539590
 GameObject:
   m_ObjectHideFlags: 0
@@ -10880,6 +10916,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2130008046}
     m_Modifications:
+    - target: {fileID: 1971628602626475329, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
+      propertyPath: durability
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 2185502958885466726, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -10938,6 +10978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1684277790}
+  - component: {fileID: 1684277791}
   m_Layer: 0
   m_Name: Baricade
   m_TagString: Untagged
@@ -10962,6 +11003,21 @@ Transform:
   - {fileID: 1656972507}
   m_Father: {fileID: 1597266481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684277791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684277789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212f08d2511945e498ea71df3277f89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HalfBaricadeScripts: []
+  leftBaricade: 0
+  rightBaricade: 0
 --- !u!1 &1684873356
 GameObject:
   m_ObjectHideFlags: 0
@@ -11350,7 +11406,7 @@ PrefabInstance:
       objectReference: {fileID: 1776352620}
     - target: {fileID: 1971628602626475329, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
       propertyPath: durability
-      value: 15
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 2185502958885466726, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11462,7 +11518,7 @@ PrefabInstance:
       objectReference: {fileID: 2106066187}
     - target: {fileID: 6371464302154702513, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: durability
-      value: 15
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7085158773526118965, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11999,7 +12055,7 @@ PrefabInstance:
       objectReference: {fileID: 646404770}
     - target: {fileID: 1971628602626475329, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
       propertyPath: durability
-      value: 15
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 2185502958885466726, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12265,7 +12321,7 @@ PrefabInstance:
       objectReference: {fileID: 1939409222}
     - target: {fileID: 6371464302154702513, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: durability
-      value: 15
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7085158773526118965, guid: 9e2d8a8177766fd419e7c73157ff3d29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12856,7 +12912,7 @@ PrefabInstance:
       objectReference: {fileID: 2065861274}
     - target: {fileID: 1971628602626475329, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
       propertyPath: durability
-      value: 15
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 2185502958885466726, guid: 2bf31ad4dbc4cad4ebf1f601b3a89a7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13566,6 +13622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2130008046}
+  - component: {fileID: 2130008047}
   m_Layer: 0
   m_Name: Baricade (1)
   m_TagString: Untagged
@@ -13590,6 +13647,21 @@ Transform:
   - {fileID: 1270973891}
   m_Father: {fileID: 1597266481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2130008047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130008045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212f08d2511945e498ea71df3277f89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HalfBaricadeScripts: []
+  leftBaricade: 0
+  rightBaricade: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

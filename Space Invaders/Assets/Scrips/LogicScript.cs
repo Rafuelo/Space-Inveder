@@ -13,6 +13,8 @@ public class LogicScript : MonoBehaviour
     public GameObject[] objectsLives;
     private int lives;
 
+    public int wave;
+
     public bool isGameOver = false;
     private bool isMoving = true;
 
@@ -22,6 +24,7 @@ public class LogicScript : MonoBehaviour
         objectsLives = new GameObject[] { live1, live2, live3, live4, live5, live6, live7, live8 };
         LoadScore();
         LoadLives();
+        LoadWave();
     }
 
     // Update is called once per frame
@@ -116,6 +119,31 @@ public class LogicScript : MonoBehaviour
 
     //----------------------------------------------------------------------------------------------------------------------
 
+    private void LoadWave()
+    {
+        wave = PlayerPrefs.GetInt("Wave", 0);
+        AddWave();
+    }
+
+    private void SaveWave(int wave)
+    {
+        PlayerPrefs.SetInt("Wave", wave);
+        PlayerPrefs.Save();
+    }
+
+    public void AddWave()
+    {
+        wave++;
+        SaveWave(wave);
+    }
+
+    public int GetWave() 
+    { 
+        return wave;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------
+
     public void SetIsAllMoving(bool isMoving)
     {
         this.isMoving = isMoving;
@@ -135,7 +163,6 @@ public class LogicScript : MonoBehaviour
     [ContextMenu("Start Again")]
     public void StartAgain()
     {
-        SaveScore(playerScore);
         RestartGame();
     }
 
@@ -144,6 +171,8 @@ public class LogicScript : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("PlayerScore");
         PlayerPrefs.DeleteKey("Lives");
+        PlayerPrefs.DeleteKey("Wave");
+
 
         gameOverScreen.SetActive(true);
         isGameOver = true;  

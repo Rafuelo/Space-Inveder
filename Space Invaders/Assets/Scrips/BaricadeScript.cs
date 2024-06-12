@@ -2,38 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HalfBaricadeScript : MonoBehaviour
+public class BaricadeScript : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
-    public Sprite half;
-    public Sprite low;
-    public BoxCollider2D collider2d;
-    public float offsetX;
+    public HalfBaricadeScript[] HalfBaricadeScripts;
+    public int leftBaricade;
+    public int rightBaricade;
 
-    public int durability = 21;
-
-    void Update()
+    void Start()
     {
-        if (durability == 14)
-        {
-            collider2d.offset = new Vector2(collider2d.offset.x, -0.25f);
-            collider2d.size = new Vector2(collider2d.size.x, 0.5f);
-            spriteRenderer.sprite = half;
-        }
+        HalfBaricadeScripts = GetComponentsInChildren<HalfBaricadeScript>();
 
-        if (durability == 7)
-        {
-            collider2d.offset = new Vector2(offsetX, -0.37f);
-            collider2d.size = new Vector2(0.5f, 0.26f);
-            spriteRenderer.sprite = low;
-        }
+        //leftBaricade = HalfBaricadeScripts[0] != null ? HalfBaricadeScripts[0].GetDurability() : 0;
+        //rightBaricade = HalfBaricadeScripts[1] != null ? HalfBaricadeScripts[1].GetDurability() : 0;
 
-        if (durability == 0)
-            Destroy(gameObject);
+        SetDurability(ref leftBaricade, HalfBaricadeScripts[0]);
+        SetDurability(ref rightBaricade, HalfBaricadeScripts[1]);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
     {
-        durability--;
+        SetDurability(ref leftBaricade, HalfBaricadeScripts[0]);
+        SetDurability(ref rightBaricade, HalfBaricadeScripts[1]);
+    }
+
+    public void SetDurability(ref int baricade, HalfBaricadeScript hb)
+    {
+        if (hb != null)
+            baricade = hb.GetDurability();
+
+        else
+            baricade = 0;
     }
 }
