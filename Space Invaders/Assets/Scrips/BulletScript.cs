@@ -17,6 +17,9 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (logic.isGameOver)
+            gameObject.SetActive(false);
+
         if (logic.GetIsAllMoving())
         {
             if (isPlayer)

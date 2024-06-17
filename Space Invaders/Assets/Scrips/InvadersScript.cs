@@ -12,21 +12,21 @@ public class InvadersScript : MonoBehaviour
     public AudioSource source, deathSource;
     public AudioClip invaderStepClip1, invaderStepClip2, invaderStepClip3, invaderStepClip4;
     private int clipCounter = 1;
-
     public int sumOfInvaders = 55;
-
     public float moveInterval = 0.1f; 
     public float boundaryX = 2f; 
     public float moveSpeed = 0.7f; 
     private float timer = 0;
     private Vector2 currentDirection = Vector2.right;
-    private int currentWave; // Current wave number
     private bool movedDown = false;
     private bool isMoved = false;
+    private int previousInvaderCount; // Tracks invader count for speed adjustment
+    public int decreaseInterval = 5; // Interval at which speed decreases
+
 
     private void Start()
     {
-        currentWave = logic.GetWave();
+        previousInvaderCount = sumOfInvaders;
 
         // Cap the wave number at 10 for speed and position calculations
         int effectiveWave = Mathf.Min(logic.GetWave(), 10);
@@ -44,7 +44,6 @@ public class InvadersScript : MonoBehaviour
             Vector3 startPosition = new Vector3(transform.position.x, yPos, transform.position.z);
             transform.position = startPosition;
 
-            Debug.Log("Wave: " + currentWave + " (Effective Wave: " + effectiveWave + ") | Speed: " + moveSpeed + " | Y Position: " + yPos);
         }
         else
         {
@@ -54,7 +53,6 @@ public class InvadersScript : MonoBehaviour
 
             Vector3 startPosition = new Vector3(transform.position.x, yPos, transform.position.z);
             transform.position = startPosition;
-            Debug.Log("Wave: " + currentWave + " (Effective Wave: " + effectiveWave + ") | Speed: " + moveSpeed + " | Y Position: " + yPos);
         }
     }
 
@@ -70,7 +68,7 @@ public class InvadersScript : MonoBehaviour
             {
                 Move(Vector2.down, moveInterval * 2);
                 currentDirection *= -1;
-                RemoveSpeed();
+                RemoveSpeed(0.05f);
                 movedDown = true;
             }
 
@@ -80,11 +78,18 @@ public class InvadersScript : MonoBehaviour
                 movedDown = false;
             }
 
+            if ((previousInvaderCount - sumOfInvaders) >= decreaseInterval)
+            {
+                RemoveSpeed(0.02f); // Decrease moveSpeed by 0.02
+                previousInvaderCount = sumOfInvaders; // Update previousInvaderCount
+            }
+
             clipCounter++;
 
             if (clipCounter > 4)
                 clipCounter = 1;
         }
+
 
         if (sumOfInvaders == 0)
         {
@@ -132,17 +137,10 @@ public class InvadersScript : MonoBehaviour
         source.Play();
     }
 
-    private void RemoveSpeed(int times = 1)
+    private void RemoveSpeed(float decreaseAmount)
     {
-        moveSpeed -= 0.05f * times;
-        //Debug.Log("New moveSpeed: " + moveSpeed);
+        moveSpeed = Mathf.Max(0.1f, moveSpeed - decreaseAmount); // Ensure moveSpeed doesn't go below 0
     }
-
-    private void SetTransformY(float y)
-    {
-        transform.position = new Vector2(transform.position.x, y);
-    }
-
     public bool GetIsMoved()
     {
         return isMoved;

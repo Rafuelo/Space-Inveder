@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     public LogicScript logic;
     public AudioSource source;
+    public Animator animator;
     public float moveSpeed = 5f; // Adjust the speed as needed
     public float boundaryX = 5f; // Adjust the boundary to limit movem
 
@@ -32,10 +33,13 @@ public class PlayerScript : MonoBehaviour
 
         if (timer >= 2.5)
         {
-            logic.SetIsAllMoving(true);
+            logic.SetIsAllMoving(true, animator);
             transform.position = new Vector2(-5.5f, -4.5f);
             timer = 0;
         }
+
+        if (logic.isGameOver)
+            Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -43,7 +47,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag != "Player Bullet")
         {
             logic.Removelive();
-            logic.SetIsAllMoving(false);
+            logic.SetIsAllMoving(false, animator);
             source.Play();
         }
     }
